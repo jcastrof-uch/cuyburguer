@@ -1,526 +1,319 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CuyBurger - La Verdadera Hamburguesa Andina</title>
-    <!-- Tailwind CSS (CDN Seguro) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons (CDN Seguro, no requiere inicialización JS) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#f59e0b', // amber-500
-                            DEFAULT: '#d97706', // amber-600
-                            dark: '#b45309', // amber-700
-                        },
-                        andean: {
-                            DEFAULT: '#451a03', // stone-900 (brown)
-                            light: '#78350f', // amber-900
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts (Accesible globalmente) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <title>Cuy Gourmet Urubamba | Hamburguesas de Autor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
-        .hero-bg {
-            background-image: linear-gradient(rgba(69, 26, 3, 0.7), rgba(69, 26, 3, 0.7)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=2000');
+        :root {
+            --oro-andino: #C5A059;
+            --rojo-imperial: #8B0000;
+            --carbon: #1A1A1A;
+            --crema-suave: #F9F7F2;
+            --blanco: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--crema-suave);
+            color: var(--carbon);
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--oro-andino);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            color: var(--oro-andino);
+            font-size: 1.5rem;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li { margin-left: 25px; }
+
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--oro-andino); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=1920'); /* Imagen de hamburguesa premium */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanco);
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn-cta {
+            background: var(--oro-andino);
+            color: var(--carbon);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            background: var(--rojo-imperial);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- SECCIONES --- */
+        section { padding: 100px 10% 60px; }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--rojo-imperial);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '♦';
+            display: block;
+            color: var(--oro-andino);
+            font-size: 1.5rem;
+        }
+
+        /* --- RECETA (GRID) --- */
+        .receta-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .receta-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0 var(--oro-andino);
+        }
+
+        /* --- CARTA (CARDS) --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--blanco);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+
+        .card-img {
+            height: 200px;
             background-size: cover;
             background-position: center;
         }
-        /* Ocultar scrollbar para el carrito */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .card-body { padding: 25px; }
+
+        .precio {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--rojo-imperial);
+            margin-top: 15px;
+        }
+
+        /* --- MAPA --- */
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 400px;
+            position: relative;
+            height: 0;
+            border-radius: 20px;
+            border: 3px solid var(--oro-andino);
+        }
+
+        .map-responsive iframe {
+            left: 0; top: 0;
+            height: 100%; width: 100%;
+            position: absolute;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--carbon);
+            color: var(--blanco);
+            text-align: center;
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        .social-icons a {
+            color: var(--oro-andino);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.5rem; }
+            .receta-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body>
 
-    <!-- Navegación -->
-    <nav class="fixed w-full z-50 bg-andean text-white shadow-md transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <i class="fa-solid fa-fire text-brand text-3xl"></i>
-                    <span class="font-display font-bold text-2xl tracking-tight">Cuy<span class="text-brand">Burger</span></span>
-                </div>
-
-                <!-- Enlaces Desktop -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="hover:text-brand transition-colors font-medium">Inicio</a>
-                    <a href="#nosotros" class="hover:text-brand transition-colors font-medium">Por qué Cuy</a>
-                    <a href="#menu" class="hover:text-brand transition-colors font-medium">Menú</a>
-                    <a href="#contacto" class="hover:text-brand transition-colors font-medium">Ubicación</a>
-                </div>
-
-                <!-- Botón Carrito y Menú Móvil -->
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleCart()" class="relative p-2 hover:text-brand transition-colors focus:outline-none" id="cart-btn-icon">
-                        <i class="fa-solid fa-bag-shopping text-2xl transition-transform duration-300"></i>
-                        <span id="cart-count" class="absolute top-0 right-0 bg-brand text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1 -translate-y-1">0</span>
-                    </button>
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 hover:text-brand transition-colors focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Menú Móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-andean-light border-t border-andean">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#inicio" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand hover:text-white transition-colors">Inicio</a>
-                <a href="#nosotros" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand hover:text-white transition-colors">Por qué Cuy</a>
-                <a href="#menu" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand hover:text-white transition-colors">Menú</a>
-                <a href="#contacto" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand hover:text-white transition-colors">Ubicación</a>
-            </div>
-        </div>
+    <nav>
+        <a href="#" class="logo">CUY BURGER</a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#receta">Receta</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#carta">Carta</a></li>
+            <li><a href="#mapa">Ubicación</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-bg h-screen flex items-center justify-center pt-20">
-        <div class="text-center text-white px-4 max-w-4xl mx-auto">
-            <span class="text-brand font-bold tracking-wider uppercase text-sm md:text-base mb-4 block">Innovación & Tradición Peruana</span>
-            <h1 class="text-5xl md:text-7xl font-display font-extrabold mb-6 leading-tight">
-                La Verdadera <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light to-brand-dark">Hamburguesa Andina</span>
-            </h1>
-            <p class="text-lg md:text-2xl mb-10 text-gray-200 font-light max-w-2xl mx-auto">
-                Descubre el sabor único, jugoso y altamente nutritivo de la carne de cuy en cada mordisco. 100% peruano.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#menu" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-transform transform hover:scale-105 shadow-lg shadow-brand/30 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-utensils text-xl"></i> Ver el Menú
-                </a>
+    <section id="inicio" class="hero">
+        <h2 data-aos="fade-down">El Legado de los Incas en un Mordisco</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Experiencia Gastronómica en el Corazón de Urubamba</p>
+        <br>
+        <a href="#carta" class="btn-cta" data-aos="zoom-in" data-aos-delay="400">Ver Carta Ahora</a>
+    </section>
+
+    <section id="receta">
+        <h2 class="section-title">El Arte del Sabor</h2>
+        <div class="receta-container">
+            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=800" alt="Hamburguesa Gourmet" class="receta-img" data-aos="fade-right">
+            <div data-aos="fade-left">
+                <h3>Carne Seleccionada</h3>
+                <p>Nuestra carne de cuy proviene de criaderos orgánicos de Urubamba, garantizando un producto alto en proteínas y bajo en grasas. La marinamos por 12 horas en una infusión de finas hierbas andinas y sal de Maras.</p>
+                <br>
+                <p><i class="fas fa-check-circle" style="color: var(--oro-andino);"></i> Pan de granos andinos.</p>
+                <p><i class="fas fa-check-circle" style="color: var(--oro-andino);"></i> Cremas artesanales de ají amarillo.</p>
             </div>
         </div>
     </section>
 
-    <!-- Beneficios / Nosotros -->
-    <section id="nosotros" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-display font-bold text-andean mb-4">¿Por qué elegir Carne de Cuy?</h2>
-                <div class="w-24 h-1 bg-brand mx-auto rounded-full"></div>
-                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">No solo es una experiencia culinaria premium, sino también una de las carnes más saludables que puedes consumir.</p>
-            </div>
+    <section id="equipo">
+        <h2 class="section-title">Maestros del Valle</h2>
+        <div style="text-align: center; max-width: 800px; margin: auto;" data-aos="fade-up">
+            <p>Somos un equipo de chefs y comuneros comprometidos con la revalorización del cuy. Fusionamos la técnica francesa de molienda con el fuego de los hornos cusqueños para crear una experiencia de lujo accesible.</p>
+        </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Card 1 -->
-                <div class="bg-amber-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow border border-amber-100">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                        <i class="fa-solid fa-heart-pulse text-brand text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-andean mb-3">Súper Nutritiva</h3>
-                    <p class="text-gray-600">Alta en proteínas (20.3%) y muy baja en grasas (7.8%). Contiene Omega 3 y minerales esenciales para tu cuerpo.</p>
+    <section id="carta">
+        <h2 class="section-title">Nuestra Carta</h2>
+        <div class="menu-grid">
+            <div class="card" data-aos="flip-left">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="card-body">
+                    <h3>La Urubambina</h3>
+                    <p>150g de carne de cuy, queso andino fundido y mermelada de sauco.</p>
+                    <span class="precio">S/ 24.90</span>
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-amber-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow border border-amber-100">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                        <i class="fa-solid fa-star text-brand text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-andean mb-3">Sabor Único</h3>
-                    <p class="text-gray-600">Una textura suave y jugosa. Preparada con nuestro blend secreto de hierbas andinas como el huacatay y chincho.</p>
+            </div>
+            <div class="card" data-aos="flip-left" data-aos-delay="200">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="card-body">
+                    <h3>Cuy Crunchy</h3>
+                    <p>Carne de cuy empanizada en quinua crocante con salsa de rocoto.</p>
+                    <span class="precio">S/ 28.50</span>
                 </div>
-                <!-- Card 3 -->
-                <div class="bg-amber-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow border border-amber-100">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                        <i class="fa-solid fa-leaf text-brand text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-andean mb-3">Sostenible</h3>
-                    <p class="text-gray-600">La crianza de cuyes tiene una huella de carbono significativamente menor en comparación con otras carnes rojas tradicionales.</p>
+            </div>
+            <div class="card" data-aos="flip-left" data-aos-delay="400">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1550317138-10000687ad32?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="card-body">
+                    <h3>Inca Imperial</h3>
+                    <p>Doble medallón, tocino ahumado, champiñones y huevo de corral.</p>
+                    <span class="precio">S/ 35.00</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Menú Section -->
-    <section id="menu" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-display font-bold text-andean mb-4">Nuestro Menú</h2>
-                <div class="w-24 h-1 bg-brand mx-auto rounded-full"></div>
-            </div>
-
-            <!-- Grid de Productos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
-                <!-- Los productos se inyectarán vía JavaScript -->
-            </div>
+    <section id="mapa">
+        <h2 class="section-title">Visítanos</h2>
+        <div class="map-responsive">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15525.04415444855!2d-72.0357604!3d-13.3026363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916d970344d5d377%3A0x6b0931215167f40!2sUrubamba!5e0!3m2!1ses!2spe!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
-    <!-- Banner Promocional -->
-    <section class="bg-brand text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div class="md:w-2/3">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">¿Antojo de papitas nativas?</h2>
-                <p class="text-xl text-amber-100">Todos nuestros combos incluyen papas nativas andinas fritas, crujientes por fuera y suaves por dentro, acompañadas de crema de rocoto.</p>
-            </div>
-            <div class="md:w-1/3 flex justify-center md:justify-end">
-                <button onclick="document.getElementById('menu').scrollIntoView()" class="bg-andean hover:bg-gray-900 text-white px-8 py-4 rounded-full font-bold text-lg transition-transform transform hover:scale-105 shadow-lg">
-                    Armar mi Combo
-                </button>
-            </div>
+    <footer>
+        <h2 style="font-family: 'Cinzel', serif; color: var(--oro-andino);">CUY BURGER</h2>
+        <p>Tradición & Evolución en Urubamba, Cusco.</p>
+        <div class="social-icons">
+            <br>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/51900000000"><i class="fab fa-whatsapp"></i></a>
         </div>
-    </section>
-
-    <!-- Contacto y Footer -->
-    <footer id="contacto" class="bg-andean pt-16 pb-8 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- Marca -->
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <i class="fa-solid fa-fire text-brand text-3xl"></i>
-                        <span class="font-display font-bold text-2xl tracking-tight text-white">Cuy<span class="text-brand">Burger</span></span>
-                    </div>
-                    <p class="mb-6">Revolucionando la comida rápida con el mejor superalimento de los Andes. Sabor auténtico en cada mordisco.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
-                        <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
-                        <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-x-twitter text-xl"></i></a>
-                    </div>
-                </div>
-
-                <!-- Horarios -->
-                <div>
-                    <h3 class="text-white font-bold text-lg mb-6 font-display">Horario de Atención</h3>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between border-b border-gray-700 pb-2">
-                            <span>Lunes - Jueves</span>
-                            <span class="font-medium text-white">12:00 PM - 10:00 PM</span>
-                        </li>
-                        <li class="flex justify-between border-b border-gray-700 pb-2">
-                            <span>Viernes - Sábado</span>
-                            <span class="font-medium text-brand">12:00 PM - 11:30 PM</span>
-                        </li>
-                        <li class="flex justify-between pb-2">
-                            <span>Domingo</span>
-                            <span class="font-medium text-white">1:00 PM - 9:00 PM</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Ubicación -->
-                <div>
-                    <h3 class="text-white font-bold text-lg mb-6 font-display">Encuéntranos</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-brand shrink-0 mt-1 text-xl"></i>
-                            <span>Av. La Peruanidad 1234, Jesús María, Lima, Perú.</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-brand shrink-0 text-xl"></i>
-                            <span>+51 987 654 321</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-brand shrink-0 text-xl"></i>
-                            <span>pedidos@cuyburger.pe</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-sm">
-                <p>&copy; 2026 CuyBurger - Sabor Andino. Todos los derechos reservados.</p>
-            </div>
-        </div>
+        <p style="margin-top: 20px; font-size: 0.7rem; opacity: 0.6;">© 2026 Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Carrito de Compras (Sidebar Overlay) -->
-    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden transition-opacity opacity-0" onclick="toggleCart()"></div>
-    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-[70] transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
-        <!-- Header Carrito -->
-        <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-            <h2 class="text-2xl font-display font-bold text-andean flex items-center gap-3">
-                <i class="fa-solid fa-cart-shopping text-brand"></i> Tu Orden
-            </h2>
-            <button onclick="toggleCart()" class="text-gray-500 hover:text-red-500 transition-colors">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Items del Carrito -->
-        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
-            <!-- Los items se inyectan aquí -->
-            <div id="empty-cart-msg" class="text-center text-gray-500 mt-10 hidden">
-                <div class="mb-4">
-                    <i class="fa-solid fa-bag-shopping text-6xl text-gray-300"></i>
-                </div>
-                <p>Tu carrito está vacío.</p>
-                <p class="text-sm mt-2">¡Anímate a probar nuestras delicias!</p>
-            </div>
-        </div>
-
-        <!-- Footer Carrito -->
-        <div class="p-6 border-t border-gray-200 bg-gray-50">
-            <div class="flex justify-between text-lg font-bold text-andean mb-4">
-                <span>Total:</span>
-                <span id="cart-total">S/ 0.00</span>
-            </div>
-            <button onclick="checkout()" class="w-full bg-brand hover:bg-brand-dark text-white py-4 rounded-xl font-bold text-lg transition-colors flex justify-center items-center gap-2">
-                <i class="fa-regular fa-credit-card"></i> Proceder al Pago
-            </button>
-        </div>
-    </div>
-
-    <!-- Scripts y Lógica de la Tienda -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // --- BASE DE DATOS DE PRODUCTOS ---
-        // Se utilizan URLs de imágenes de Unsplash, accesibles globalmente.
-        const products = [
-            {
-                id: 1,
-                name: "CuyBurger Clásica",
-                description: "Nuestra icónica hamburguesa de cuy crujiente (150g), lechuga orgánica, tomate, queso andino fundido y salsa uchucuta suave.",
-                price: 18.90,
-                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800",
-                tag: "Favorita"
-            },
-            {
-                id: 2,
-                name: "La Pachamanquera",
-                description: "Cuy marinado en especias de pachamanca, camote frito en hilos, cebolla criolla y mayonesa de huacatay.",
-                price: 22.50,
-                image: "https://images.unsplash.com/photo-1594212202875-86ac51f28b21?auto=format&fit=crop&q=80&w=800",
-                tag: "Premium"
-            },
-            {
-                id: 3,
-                name: "Doble Andina",
-                description: "Para los más hambrientos. Doble carne de cuy, tocino ahumado, huevo frito montado y salsa golf con toque de rocoto.",
-                price: 28.00,
-                image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&q=80&w=800",
-                tag: ""
-            },
-            {
-                id: 4,
-                name: "CuyBBQ Oriental",
-                description: "Fusión chifa-andina. Carne de cuy glaseada en salsa BBQ de sauco, cebolla caramelizada y nabo encurtido.",
-                price: 21.00,
-                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&q=80&w=800",
-                tag: "Nuevo"
-            },
-            {
-                id: 5,
-                name: "Porción Papas Nativas",
-                description: "Mix de papas nativas (leona, huamantanga, peruanita) fritas al estilo rústico. Acompañadas de 3 salsas de la casa.",
-                price: 8.50,
-                image: "https://images.unsplash.com/photo-1576107248169-281b3762f01f?auto=format&fit=crop&q=80&w=800",
-                tag: "Acompañamiento"
-            },
-            {
-                id: 6,
-                name: "Chicha Morada Frozen",
-                description: "Refrescante chicha morada tradicional, hecha con maíz morado, piña, canela y clavo, servida frozen.",
-                price: 6.00,
-                image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=800",
-                tag: "Bebida"
-            }
-        ];
-
-        // --- ESTADO DEL CARRITO ---
-        let cart = [];
-
-        // --- RENDERIZAR PRODUCTOS ---
-        function renderProducts() {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = '';
-
-            products.forEach(product => {
-                const tagHtml = product.tag ? `<span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${product.tag}</span>` : '';
-                
-                const card = `
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group relative">
-                        ${tagHtml}
-                        <div class="h-56 overflow-hidden relative">
-                            <img src="${product.image}" alt="${product.name}" crossorigin="anonymous" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-opacity"></div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-andean font-display leading-tight">${product.name}</h3>
-                                <span class="text-brand font-bold text-xl ml-2">S/ ${product.price.toFixed(2)}</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-6 h-16 overflow-hidden">${product.description}</p>
-                            <button onclick="addToCart(${product.id})" class="w-full bg-gray-100 hover:bg-brand hover:text-white text-andean font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 group-hover:shadow-md">
-                                <i class="fa-solid fa-circle-plus text-xl"></i> Agregar a la orden
-                            </button>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += card;
-            });
-        }
-
-        // --- LÓGICA DEL CARRITO ---
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            updateCartUI();
-            
-            // Efecto visual rápido para mostrar que se añadió
-            const cartIcon = document.querySelector('#cart-btn-icon i');
-            cartIcon.classList.add('text-brand', 'scale-125');
-            setTimeout(() => {
-                cartIcon.classList.remove('text-brand', 'scale-125');
-            }, 300);
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        }
-
-        function changeQuantity(productId, delta) {
-            const item = cart.find(item => item.id === productId);
-            if (item) {
-                item.quantity += delta;
-                if (item.quantity <= 0) {
-                    removeFromCart(productId);
-                } else {
-                    updateCartUI();
-                }
-            }
-        }
-
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartCount = document.getElementById('cart-count');
-            const cartTotal = document.getElementById('cart-total');
-            const emptyMsg = document.getElementById('empty-cart-msg');
-
-            // Actualizar contador
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            // Animación del badge
-            if(totalItems > 0) {
-                cartCount.classList.add('animate-bounce');
-                setTimeout(() => cartCount.classList.remove('animate-bounce'), 1000);
-            }
-
-            // Actualizar lista visual
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-
-            if (cart.length === 0) {
-                emptyMsg.style.display = 'block';
-                cartItemsContainer.appendChild(emptyMsg);
-            } else {
-                emptyMsg.style.display = 'none';
-                cart.forEach(item => {
-                    total += item.price * item.quantity;
-                    const itemHtml = `
-                        <div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                            <img src="${item.image}" alt="${item.name}" crossorigin="anonymous" class="w-16 h-16 object-cover rounded-lg">
-                            <div class="flex-1">
-                                <h4 class="font-bold text-sm text-andean line-clamp-1">${item.name}</h4>
-                                <div class="text-brand font-semibold text-sm">S/ ${(item.price * item.quantity).toFixed(2)}</div>
-                                
-                                <div class="flex items-center gap-3 mt-2">
-                                    <div class="flex items-center bg-gray-100 rounded-lg">
-                                        <button onclick="changeQuantity(${item.id}, -1)" class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-lg transition-colors">-</button>
-                                        <span class="w-8 text-center text-sm font-medium">${item.quantity}</span>
-                                        <button onclick="changeQuantity(${item.id}, 1)" class="w-7 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-lg transition-colors">+</button>
-                                    </div>
-                                    <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-600 ml-auto">
-                                        <i class="fa-solid fa-trash-can text-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    cartItemsContainer.innerHTML += itemHtml;
-                });
-            }
-
-            cartTotal.textContent = `S/ ${total.toFixed(2)}`;
-        }
-
-        // --- MANEJO DE LA UI ---
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const overlay = document.getElementById('cart-overlay');
-            
-            if (sidebar.classList.contains('translate-x-full')) {
-                // Abrir
-                sidebar.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-                document.body.style.overflow = 'hidden'; // Prevenir scroll de fondo
-            } else {
-                // Cerrar
-                sidebar.classList.add('translate-x-full');
-                overlay.classList.add('opacity-0');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-                document.body.style.overflow = '';
-            }
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        function checkout() {
-            if(cart.length === 0) {
-                alert("Tu carrito está vacío. ¡Agrega unas ricas CuyBurgers primero!");
-                return;
-            }
-            
-            // Simular checkout
-            const btn = document.querySelector('button[onclick="checkout()"]');
-            const originalContent = btn.innerHTML;
-            
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Procesando...`;
-            
-            setTimeout(() => {
-                alert("¡Pedido realizado con éxito! Prepararemos tus deliciosas hamburguesas andinas de inmediato.");
-                cart = [];
-                updateCartUI();
-                toggleCart();
-                btn.innerHTML = originalContent;
-            }, 1500);
-        }
-
-        // Cambiar estilo del Navbar al hacer scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg');
-                nav.classList.replace('bg-andean', 'bg-andean/95');
-                nav.classList.add('backdrop-blur-md');
-            } else {
-                nav.classList.remove('shadow-lg', 'backdrop-blur-md');
-                nav.classList.replace('bg-andean/95', 'bg-andean');
-            }
+        AOS.init({
+            duration: 1000,
+            once: true
         });
-
-        // --- INICIALIZACIÓN ---
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            updateCartUI();
-        });
-
     </script>
 </body>
 </html>
